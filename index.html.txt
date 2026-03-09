@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nexfolio — Free Trials. Real Clients. Big Growth.</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --purple:#7B2FBE;
+  --pink:#F72585;
+  --grad:linear-gradient(135deg,#7B2FBE 0%,#C44FD0 50%,#F72585 100%);
+  --grad-soft:linear-gradient(135deg,rgba(123,47,190,0.08) 0%,rgba(247,37,133,0.05) 100%);
+  --light-bg:#f8f4ff;
+  --text:#1a0a2e;
+  --text-mid:#4a3060;
+  --text-light:#8a7a9a;
+  --border:rgba(123,47,190,0.15);
+  --white:#ffffff;
+  --off-white:#fafafa;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off-white);color:var(--text);overflow-x:hidden;}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:70px;}
+.page.active{display:block;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;justify-content:space-between;padding:0.9rem 4%;background:rgba(250,244,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(–border);}
+.nav-logo{display:flex;align-items:center;gap:0.5rem;cursor:pointer;background:none;border:none;}
+.nav-logo img{height:30px;width:auto;}
+.nav-logo-text{font-size:1.1rem;font-weight:700;color:var(–purple);}
+.nav-right{display:flex;gap:0.5rem;align-items:center;}
+.nav-link{font-size:0.83rem;font-weight:500;color:var(–text-mid);background:none;border:none;cursor:pointer;padding:0.3rem 0.5rem;}
+.btn-grad{background:linear-gradient(135deg,#7B2FBE,#F72585);color:white !important;padding:0.55rem 1.1rem;border-radius:50px;font-size:0.8rem;font-weight:600;border:none;cursor:pointer;white-space:nowrap;-webkit-text-fill-color:white !important;}
+.btn-outline{background:transparent;color:var(–purple);padding:0.55rem 1.1rem;border-radius:50px;font-size:0.8rem;font-weight:600;border:2px solid var(–purple);cursor:pointer;white-space:nowrap;}
+.btn-white{background:white;color:var(–purple);padding:0.7rem 1.6rem;border-radius:50px;font-size:0.85rem;font-weight:700;border:none;cursor:pointer;}
+
+/* HELPERS */
+.section-tag{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(–purple);margin-bottom:1rem;background:none !important;-webkit-text-fill-color:var(–purple) !important;}
+.section-tag::before{content:’’;width:18px;height:2px;background:var(–grad);border-radius:2px;}
+.section-title{font-family:‘Fraunces’,serif;font-size:clamp(1.7rem,3vw,2.6rem);font-weight:400;line-height:1.2;color:var(–text);margin-bottom:1.2rem;}
+.grad-text{color:var(–pink);font-style:italic;display:inline;}
+
+/* HERO */
+.hero{padding:3rem 4% 4rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(123,47,190,0.1);border:1px solid rgba(123,47,190,0.25);padding:0.4rem 1rem;border-radius:50px;font-size:0.75rem;font-weight:600;color:var(–purple);margin-bottom:1.5rem;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(–pink);}
+.hero-title{font-family:‘Fraunces’,serif;font-size:clamp(2.4rem,4vw,3.8rem);font-weight:400;line-height:1.1;margin-bottom:1.3rem;}
+.hero-sub{font-size:0.95rem;line-height:1.75;color:var(–text-mid);margin-bottom:2rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;}
+.hero-trust{display:flex;align-items:center;gap:0.8rem;font-size:0.8rem;color:var(–text-light);}
+.avatars{display:flex;}
+.avatars span{width:30px;height:30px;border-radius:50%;border:2px solid white;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:white;margin-left:-8px;}
+.avatars span:first-child{margin-left:0;}
+.profile-card{background:var(–grad);border-radius:20px;padding:2rem;color:white;box-shadow:0 20px 50px rgba(123,47,190,0.3);max-width:300px;width:100%;}
+.p-tag{display:inline-block;background:rgba(255,255,255,0.2);padding:0.3rem 0.8rem;border-radius:50px;font-size:0.7rem;font-weight:600;margin-bottom:1rem;}
+.p-name{font-size:1.2rem;font-weight:700;margin-bottom:0.2rem;}
+.p-role{font-size:0.78rem;opacity:0.8;margin-bottom:1rem;}
+.p-bio{font-size:0.84rem;line-height:1.6;opacity:0.9;margin-bottom:1.2rem;}
+.p-stars{color:#FFD700;font-size:0.85rem;margin-bottom:0.3rem;}
+.p-review{font-size:0.76rem;opacity:0.85;font-style:italic;}
+
+/* FOUNDER */
+.founder-section{padding:5rem 4%;background:var(–light-bg);display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.founder-body{font-size:0.92rem;line-height:1.85;color:var(–text-mid);margin-bottom:1.1rem;}
+.founder-sig{font-family:‘Fraunces’,serif;font-size:1.2rem;font-style:italic;color:var(–purple);margin-top:1.5rem;}
+.founder-sig-sub{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(–text-light);margin-top:0.3rem;}
+.pain-list{display:flex;flex-direction:column;gap:1rem;}
+.pain-item{background:white;border:1px solid var(–border);border-radius:14px;padding:1rem 1.3rem;display:flex;align-items:flex-start;gap:0.8rem;}
+.pain-num{width:32px;height:32px;flex-shrink:0;background:var(–grad);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;color:white;}
+.pain-text{font-size:0.85rem;line-height:1.6;color:var(–text-mid);}
+
+/* HOW */
+.how-section{padding:5rem 4%;text-align:center;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.step-card{background:white;border:1px solid var(–border);border-radius:20px;padding:2rem;}
+.step-num{width:46px;height:46px;border-radius:50%;background:var(–grad);color:white;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;}
+.step-title{font-size:1rem;font-weight:700;color:var(–text);margin-bottom:0.7rem;}
+.step-body{font-size:0.84rem;line-height:1.7;color:var(–text-mid);}
+
+/* FOR WHO */
+.forwho-section{padding:5rem 4%;background:var(–light-bg);display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.forwho-card{border-radius:20px;padding:2.5rem;}
+.forwho-light{background:white;border:1px solid var(–border);}
+.forwho-dark{background:var(–grad);}
+.fw-tag{font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.8rem;}
+.forwho-light .fw-tag{color:var(–purple);}
+.forwho-dark .fw-tag{color:rgba(255,255,255,0.7);}
+.fw-title{font-family:‘Fraunces’,serif;font-size:1.5rem;font-weight:400;line-height:1.25;margin-bottom:1.3rem;}
+.forwho-light .fw-title{color:var(–text);}
+.forwho-dark .fw-title{color:white;}
+.fw-list{list-style:none;margin-bottom:1.8rem;}
+.fw-list li{display:flex;gap:0.6rem;font-size:0.85rem;padding:0.45rem 0;border-bottom:1px solid rgba(123,47,190,0.08);}
+.forwho-dark .fw-list li{border-bottom-color:rgba(255,255,255,0.12);color:rgba(255,255,255,0.85);}
+.forwho-light .fw-list li{color:var(–text-mid);}
+.fw-list li:last-child{border-bottom:none;}
+.fw-list li::before{content:’\2713’;font-weight:700;flex-shrink:0;}
+.forwho-light .fw-list li::before{color:var(–purple);}
+.forwho-dark .fw-list li::before{color:white;}
+
+/* CATEGORIES */
+.cat-section{padding:5rem 4%;}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;}
+.cat-card{background:white;border:1px solid var(–border);border-radius:14px;padding:1.5rem 1.2rem;text-align:center;cursor:pointer;transition:all 0.2s;}
+.cat-card:hover{border-color:var(–purple);transform:translateY(-3px);}
+.cat-name{font-size:0.88rem;font-weight:700;color:var(–text);margin-bottom:0.3rem;}
+.cat-desc{font-size:0.72rem;color:var(–text-light);}
+
+/* WAITLIST */
+.waitlist-section{padding:5rem 4%;background:var(–light-bg);display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.form-group{display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-label{font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(–text-mid);}
+.form-input,.form-select,.form-textarea{background:white;border:1.5px solid var(–border);border-radius:10px;padding:0.8rem 1rem;font-family:‘Plus Jakarta Sans’,sans-serif;font-size:0.88rem;color:var(–text);outline:none;width:100%;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(–purple);}
+.form-textarea{resize:vertical;min-height:90px;}
+.form-select{appearance:none;cursor:pointer;background-color:white;}
+.form-submit{width:100%;padding:0.95rem;background:var(–grad);color:white;border:none;border-radius:50px;font-family:‘Plus Jakarta Sans’,sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;margin-top:0.3rem;}
+.form-note{font-size:0.73rem;color:var(–text-light);text-align:center;margin-top:0.6rem;}
+.success-msg{display:none;background:var(–grad-soft);border:1px solid rgba(123,47,190,0.2);color:var(–purple);padding:1rem;border-radius:10px;font-size:0.85rem;font-weight:600;text-align:center;margin-top:0.8rem;}
+.t-card{background:white;border:1px solid var(–border);border-radius:14px;padding:1.3rem;margin-bottom:1rem;}
+.t-stars{color:var(–purple);font-size:0.8rem;margin-bottom:0.5rem;}
+.t-quote{font-size:0.86rem;line-height:1.7;color:var(–text-mid);font-style:italic;margin-bottom:0.8rem;}
+.t-author{display:flex;align-items:center;gap:0.6rem;}
+.t-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:white;}
+.t-name{font-size:0.8rem;font-weight:700;color:var(–text);}
+.t-role{font-size:0.7rem;color:var(–text-light);}
+
+/* BROWSE */
+.browse-hero{background:var(–grad);padding:3rem 4%;color:white;text-align:center;}
+.browse-hero h1{font-family:‘Fraunces’,serif;font-size:2.4rem;font-weight:400;margin-bottom:0.8rem;}
+.browse-hero p{opacity:0.85;margin-bottom:1.8rem;}
+.search-wrap{display:flex;max-width:560px;margin:0 auto;background:white;border-radius:50px;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,0.18);}
+.search-wrap input{flex:1;padding:0.9rem 1.3rem;border:none;outline:none;font-family:‘Plus Jakarta Sans’,sans-serif;font-size:0.9rem;color:var(–text);}
+.search-wrap button{background:var(–grad);color:white;border:none;padding:0.9rem 1.6rem;font-weight:600;cursor:pointer;}
+.filter-row{padding:1.2rem 4%;background:white;border-bottom:1px solid var(–border);display:flex;gap:0.7rem;flex-wrap:wrap;}
+.filter-chip{padding:0.35rem 0.9rem;border-radius:50px;border:1.5px solid var(–border);font-size:0.78rem;font-weight:500;cursor:pointer;background:white;color:var(–text-mid);}
+.filter-chip.active{background:var(–grad);color:white;border-color:transparent;}
+.providers-grid{padding:2.5rem 4%;display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;}
+.prov-card{background:white;border:1px solid var(–border);border-radius:18px;overflow:hidden;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;}
+.prov-card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(123,47,190,0.1);}
+.prov-header{height:90px;display:flex;align-items:flex-end;padding:0.8rem;position:relative;}
+.prov-avatar{width:58px;height:58px;border-radius:50%;border:3px solid white;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:white;background:rgba(255,255,255,0.2);}
+.trial-pill{position:absolute;top:0.8rem;right:0.8rem;background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9;padding:0.2rem 0.6rem;border-radius:50px;font-size:0.68rem;font-weight:600;}
+.prov-body{padding:0.9rem 1.1rem 1.3rem;}
+.prov-name{font-size:0.95rem;font-weight:700;color:var(–text);margin-bottom:0.15rem;}
+.prov-role{font-size:0.75rem;color:var(–purple);font-weight:600;margin-bottom:0.4rem;}
+.prov-loc{font-size:0.72rem;color:var(–text-light);margin-bottom:0.6rem;}
+.prov-bio{font-size:0.8rem;line-height:1.55;color:var(–text-mid);margin-bottom:0.8rem;}
+.prov-stars{font-size:0.77rem;color:var(–purple);margin-bottom:0.8rem;}
+.prov-footer{display:flex;justify-content:space-between;align-items:center;}
+.prov-price{font-size:0.75rem;color:var(–text-light);}
+.prov-price strong{color:var(–text);font-size:0.88rem;}
+.btn-book{background:var(–grad);color:white;border:none;padding:0.45rem 1.1rem;border-radius:50px;font-size:0.75rem;font-weight:600;cursor:pointer;}
+
+/* SIGNUP */
+.signup-hero{background:var(–grad);padding:3rem 4%;color:white;text-align:center;}
+.signup-hero h1{font-family:‘Fraunces’,serif;font-size:2.2rem;font-weight:400;margin-bottom:0.6rem;}
+.signup-wrap{max-width:640px;margin:2.5rem auto;padding:0 1.5rem 4rem;}
+.signup-card{background:white;border-radius:20px;padding:2.2rem;box-shadow:0 8px 28px rgba(123,47,190,0.08);border:1px solid var(–border);}
+.fs-title{font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(–purple);margin-bottom:1.1rem;padding-bottom:0.5rem;border-bottom:1px solid var(–border);margin-top:1.3rem;}
+.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;}
+.plan-opt{border:2px solid var(–border);border-radius:14px;padding:1.1rem;cursor:pointer;text-align:center;position:relative;}
+.plan-opt.sel{border-color:var(–purple);background:var(–grad-soft);}
+.plan-opt.pop::before{content:‘Popular’;position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(–grad);color:white;font-size:0.62rem;font-weight:700;padding:0.18rem 0.55rem;border-radius:50px;white-space:nowrap;}
+.plan-name{font-weight:700;font-size:0.88rem;color:var(–text);margin-bottom:0.25rem;}
+.plan-price{font-family:‘Fraunces’,serif;font-size:1.3rem;color:var(–purple);margin-bottom:0.25rem;}
+.plan-price span{font-size:0.72rem;font-family:‘Plus Jakarta Sans’,sans-serif;color:var(–text-light);}
+.plan-feat{font-size:0.7rem;color:var(–text-mid);line-height:1.5;}
+.billing-row{display:flex;align-items:center;gap:0.8rem;margin-bottom:1.3rem;font-size:0.83rem;color:var(–text-mid);}
+.tog{width:42px;height:22px;background:var(–border);border-radius:50px;position:relative;cursor:pointer;flex-shrink:0;}
+.tog.on{background:var(–purple);}
+.tog::after{content:’’;position:absolute;width:16px;height:16px;background:white;border-radius:50%;top:3px;left:3px;transition:left 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.2);}
+.tog.on::after{left:23px;}
+.save-pill{background:#e8f5e9;color:#2e7d32;font-size:0.68rem;font-weight:700;padding:0.18rem 0.5rem;border-radius:50px;}
+
+/* PRICING */
+.pricing-hero{background:var(–grad);padding:4rem 4%;color:white;text-align:center;}
+.pricing-hero h1{font-family:‘Fraunces’,serif;font-size:2.6rem;font-weight:400;margin-bottom:0.8rem;}
+.pricing-hero p{opacity:0.85;max-width:460px;margin:0 auto 1.8rem;}
+.bill-switch{display:inline-flex;background:rgba(255,255,255,0.15);border-radius:50px;padding:0.25rem;gap:0.2rem;}
+.bill-btn{padding:0.45rem 1.3rem;border-radius:50px;border:none;font-family:‘Plus Jakarta Sans’,sans-serif;font-size:0.83rem;font-weight:600;cursor:pointer;}
+.bill-btn.on{background:white;color:var(–purple);}
+.bill-btn:not(.on){background:transparent;color:rgba(255,255,255,0.8);}
+.pricing-grid{padding:3.5rem 4%;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1000px;margin:0 auto;}
+.price-card{background:white;border:1px solid var(–border);border-radius:20px;padding:2.2rem;position:relative;}
+.price-card.feat{border-color:var(–purple);box-shadow:0 0 0 2px var(–purple);}
+.feat-pill{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(–grad);color:white;font-size:0.68rem;font-weight:700;padding:0.25rem 0.9rem;border-radius:50px;white-space:nowrap;}
+.pc-plan{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–purple);margin-bottom:0.4rem;}
+.pc-amount{font-family:‘Fraunces’,serif;font-size:2.8rem;font-weight:400;color:var(–text);line-height:1;margin-bottom:0.25rem;}
+.pc-amount span{font-size:0.9rem;font-family:‘Plus Jakarta Sans’,sans-serif;color:var(–text-light);}
+.pc-desc{font-size:0.82rem;color:var(–text-mid);margin-bottom:1.8rem;padding-bottom:1.3rem;border-bottom:1px solid var(–border);}
+.pc-list{list-style:none;margin-bottom:1.8rem;}
+.pc-list li{display:flex;gap:0.6rem;font-size:0.82rem;color:var(–text-mid);padding:0.45rem 0;border-bottom:1px solid rgba(123,47,190,0.05);}
+.pc-list li:last-child{border-bottom:none;}
+.pc-list li::before{content:’\2713’;color:var(–purple);font-weight:700;flex-shrink:0;}
+.pc-list li.no::before{content:’\2715’;color:var(–text-light);}
+.pc-list li.no{color:var(–text-light);}
+.pc-btn{width:100%;padding:0.85rem;border-radius:50px;font-family:‘Plus Jakarta Sans’,sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;border:none;}
+.pc-btn.p{background:var(–grad);color:white;}
+.pc-btn.s{background:transparent;color:var(–purple);border:2px solid var(–purple);}
+.faq-wrap{padding:3.5rem 4%;max-width:740px;margin:0 auto;}
+.faq-title{font-family:‘Fraunces’,serif;font-size:1.8rem;font-weight:400;text-align:center;margin-bottom:2rem;}
+.faq-item{border-bottom:1px solid var(–border);padding:1.1rem 0;cursor:pointer;}
+.faq-q{font-weight:600;font-size:0.92rem;display:flex;justify-content:space-between;color:var(–text);}
+.faq-a{font-size:0.85rem;color:var(–text-mid);line-height:1.75;max-height:0;overflow:hidden;transition:max-height 0.3s,padding 0.3s;}
+.faq-item.open .faq-a{max-height:200px;padding-top:0.7rem;}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(26,10,46,0.55);z-index:99999;align-items:center;justify-content:center;}
+.overlay.open{display:flex;}
+.modal{background:white;border-radius:20px;padding:2.2rem;max-width:480px;width:92%;max-height:90vh;overflow-y:auto;position:relative;}
+.modal-close{position:absolute;top:1rem;right:1rem;background:var(–light-bg);border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;color:var(–text-mid);}
+.modal-title{font-family:‘Fraunces’,serif;font-size:1.5rem;font-weight:400;margin-bottom:0.4rem;}
+.modal-sub{font-size:0.83rem;color:var(–text-mid);margin-bottom:1.2rem;}
+.trial-info{background:var(–light-bg);border-radius:10px;padding:0.9rem 1.1rem;margin-bottom:1.3rem;font-size:0.83rem;color:var(–text-mid);line-height:1.6;}
+.trial-info strong{color:var(–text);display:block;margin-bottom:0.3rem;}
+.success-box{display:none;text-align:center;padding:1rem 0;}
+.success-box h3{font-family:‘Fraunces’,serif;font-size:1.4rem;margin-bottom:0.5rem;margin-top:1rem;}
+.success-box p{font-size:0.85rem;color:var(–text-mid);line-height:1.7;}
+
+/* FOOTER */
+footer{background:var(–text);color:rgba(255,255,255,0.55);padding:3.5rem 4% 1.8rem;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,0.1);}
+.footer-logo{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem;cursor:pointer;background:none;border:none;}
+.footer-logo img{height:28px;filter:brightness(0) invert(1);}
+.footer-logo-text{font-size:1.1rem;font-weight:700;color:#C44FD0;}
+.footer-desc{font-size:0.82rem;line-height:1.7;margin-bottom:0.8rem;}
+.footer-contact a{color:#C44FD0;text-decoration:none;font-size:0.8rem;}
+.fc-title{font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;}
+.fc-links{list-style:none;}
+.fc-links li{margin-bottom:0.6rem;}
+.fc-links li button{font-size:0.82rem;color:rgba(255,255,255,0.5);background:none;border:none;cursor:pointer;padding:0;font-family:‘Plus Jakarta Sans’,sans-serif;text-align:left;}
+.fc-links li button:hover{color:white;}
+.footer-bottom{display:flex;justify-content:space-between;font-size:0.74rem;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+.hero,.founder-section,.forwho-section,.waitlist-section{grid-template-columns:1fr;padding:2.5rem 4%;gap:2rem;}
+.steps,.cat-grid{grid-template-columns:repeat(2,1fr);}
+.providers-grid{grid-template-columns:repeat(2,1fr);}
+.pricing-grid{grid-template-columns:1fr;padding:2rem 4%;}
+.plan-grid{grid-template-columns:1fr;}
+.footer-grid{grid-template-columns:1fr 1fr;gap:1.5rem;}
+.footer-bottom{flex-direction:column;gap:0.8rem;}
+.nav-link{display:none;}
+.nav-join{display:none;}
+.form-row{grid-template-columns:1fr;}
+.hero-right{display:flex;justify-content:center;}
+}
+@media(max-width:500px){
+.steps,.cat-grid,.providers-grid{grid-template-columns:1fr;}
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <button class="nav-logo" onclick="showPage('home')">
+    <img src="data:image/png;base64,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" alt="NF"/>
+    <span class="nav-logo-text">Nexfolio</span>
+  </button>
+  <div class="nav-right">
+    <button class="nav-link" onclick="showPage('browse')">Browse</button>
+    <button class="nav-link" onclick="showPage('pricing')">Pricing</button>
+    <button class="btn-outline nav-join" onclick="showPage('signup')">Join as Provider</button>
+    <button class="btn-grad" onclick="showPage('browse')">Find Talent</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div>
+      <div class="hero-badge"><span class="badge-dot"></span>Now accepting early access</div>
+      <h1 class="hero-title">Free Trials.<br/><span class="grad-text">Real Clients.</span><br/>Big Growth.</h1>
+      <p class="hero-sub">Nexfolio connects emerging service professionals with real clients through trial-based work — so your talent speaks before reviews do.</p>
+      <div class="hero-btns">
+        <button class="btn-grad" onclick="showPage('signup')">Join as a Provider</button>
+        <button class="btn-outline" onclick="showPage('browse')">Find Talent</button>
+      </div>
+      <div class="hero-trust">
+        <div class="avatars">
+          <span style="background:linear-gradient(135deg,#7B2FBE,#F72585)">A</span>
+          <span style="background:linear-gradient(135deg,#F72585,#C44FD0)">J</span>
+          <span style="background:linear-gradient(135deg,#C44FD0,#7B2FBE)">P</span>
+        </div>
+        <span>Join <strong>100+</strong> providers on the waitlist</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="profile-card">
+        <div class="p-tag">Trial Available</div>
+        <div class="p-name">Aisha M.</div>
+        <div class="p-role">Wedding Day Coordinator · Atlanta, GA</div>
+        <div class="p-bio">3 years of event experience. Ready to prove my coordination skills with a complimentary consultation for your big day.</div>
+        <div class="p-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="p-review">"She turned chaos into perfection. Hired her immediately."</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="founder-section" id="story">
+    <div>
+      <div class="section-tag">Why Nexfolio Exists</div>
+      <h2 class="section-title">Built from a <span class="grad-text">lived experience.</span></h2>
+      <p class="founder-body">As an event planner, stylist, and day-of coordinator in Atlanta, I understand firsthand how difficult it is for emerging professionals to break in. Not because of a lack of skill, but because of a lack of opportunity.</p>
+      <p class="founder-body">The industry runs on reputation. And reputation requires reviews. But reviews require clients. And clients want reviews before they hire you. It is a cycle that keeps talented, hardworking professionals on the sidelines, regardless of how prepared they are. I know this because I lived it myself. Despite having the training, the passion, and the drive, I faced the same impossible loop and no platform existed to help me out of it.</p>
+      <p class="founder-body">Nexfolio was built to break that cycle. By creating a space where emerging service professionals can offer trial-based work, we give talent the chance to prove itself and give clients a low-risk way to discover people who will exceed their expectations.</p>
+      <p class="founder-body">This is not just a platform. It is the opportunity I wish had existed when I was starting out.</p>
+      <div class="founder-sig">Tee</div>
+      <div class="founder-sig-sub">Founder, Nexfolio</div>
+    </div>
+    <div class="pain-list">
+      <div class="pain-item"><div class="pain-num">01</div><div class="pain-text"><strong>You finish your training.</strong> Skilled, certified, ready — but zero clients and zero reviews.</div></div>
+      <div class="pain-item"><div class="pain-num">02</div><div class="pain-text"><strong>The impossible loop begins.</strong> No reviews means no clients. No clients means no reviews.</div></div>
+      <div class="pain-item"><div class="pain-num">03</div><div class="pain-text"><strong>You undercharge just to compete.</strong> Or give up entirely on your dream of working for yourself.</div></div>
+      <div class="pain-item"><div class="pain-num">04</div><div class="pain-text"><strong>Nexfolio breaks the cycle.</strong> One trial. One honest review. The proof you need to grow.</div></div>
+    </div>
+  </section>
+
+  <section class="how-section">
+    <div class="section-tag" style="justify-content:center">The Process</div>
+    <h2 class="section-title" style="text-align:center">Simple. Transparent. <span class="grad-text">Built on trust.</span></h2>
+    <div class="steps">
+      <div class="step-card"><div class="step-num">01</div><div class="step-title">Create Your Profile</div><p class="step-body">Showcase your skills, experience, and trial offer. Choose your plan and go live in minutes.</p></div>
+      <div class="step-card"><div class="step-num">02</div><div class="step-title">Book a Trial</div><p class="step-body">Clients browse and book a defined trial service — scoped, time-limited, and agreed upon upfront.</p></div>
+      <div class="step-card"><div class="step-num">03</div><div class="step-title">Earn Real Reviews</div><p class="step-body">After the trial, clients leave honest reviews. Build your reputation and unlock paid opportunities.</p></div>
+    </div>
+  </section>
+
+  <section class="forwho-section">
+    <div class="forwho-card forwho-light">
+      <div class="fw-tag">For Providers</div>
+      <h3 class="fw-title">You are talented. Now let the world know.</h3>
+      <ul class="fw-list">
+        <li>Get clients from day one with a paid listing</li>
+        <li>Set your own trial scope, time, and deliverables</li>
+        <li>Convert trial clients into long-term paying work</li>
+        <li>Build a portfolio of real reviews from real people</li>
+      </ul>
+      <button class="btn-grad" onclick="showPage('signup')">Join as a Provider</button>
+    </div>
+    <div class="forwho-card forwho-dark">
+      <div class="fw-tag">For Clients</div>
+      <h3 class="fw-title" style="color:white">Discover talent before you commit.</h3>
+      <ul class="fw-list">
+        <li>Browse and book trials completely free</li>
+        <li>Find fresh talent that established platforms overlook</li>
+        <li>Support emerging professionals in your community</li>
+        <li>Leave honest feedback that helps talent grow</li>
+      </ul>
+      <button class="btn-white" onclick="showPage('browse')">Find a Provider</button>
+    </div>
+  </section>
+
+  <section class="cat-section">
+    <div style="text-align:center">
+      <div class="section-tag" style="justify-content:center">Categories</div>
+      <h2 class="section-title">Every kind of talent. <span class="grad-text">One platform.</span></h2>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="showPage('browse')"><div class="cat-name">Beauty and Care</div><div class="cat-desc">Hair, Makeup, Nails</div></div>
+      <div class="cat-card" onclick="showPage('browse')"><div class="cat-name">Events and Planning</div><div class="cat-desc">Weddings, Parties</div></div>
+      <div class="cat-card" onclick="showPage('browse')"><div class="cat-name">Home Services</div><div class="cat-desc">Plumbing, Electrical</div></div>
+      <div class="cat-card" onclick="showPage('browse')"><div class="cat-name">Tech and Creative</div><div class="cat-desc">Design, Dev, Digital</div></div>
+      <div class="cat-card" onclick="showPage('browse')"><div class="cat-name">Fitness and Wellness</div><div class="cat-desc">Training, Coaching</div></div>
+      <div class="cat-card" onclick="showPage('browse')"><div class="cat-name">Photography</div><div class="cat-desc">Portraits, Events</div></div>
+      <div class="cat-card" onclick="showPage('browse')"><div class="cat-name">Tutoring</div><div class="cat-desc">Academic, Business</div></div>
+      <div class="cat-card" onclick="showPage('signup')"><div class="cat-name">More Soon</div><div class="cat-desc">Tell us what you need</div></div>
+    </div>
+  </section>
+
+  <section class="waitlist-section" id="join">
+    <div>
+      <div class="section-tag">Early Access</div>
+      <h2 class="section-title">Be first <span class="grad-text">in the door.</span></h2>
+      <p style="font-size:0.93rem;line-height:1.8;color:var(--text-mid);margin-bottom:1.8rem;">Join the waitlist to get early access and connect with your first clients or providers before anyone else.</p>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" id="wl-fname" placeholder="First name"/></div>
+        <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" id="wl-lname" placeholder="Last name"/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="wl-email" placeholder="you@email.com"/></div>
+      <div class="form-group"><label class="form-label">I am joining as a</label>
+        <select class="form-select" id="wl-role">
+          <option value="">Select one</option>
+          <option>Service Provider</option>
+          <option>Client looking for talent</option>
+          <option>Both</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Service Category</label>
+        <select class="form-select" id="wl-cat">
+          <option value="">Select category</option>
+          <option>Beauty and Personal Care</option>
+          <option>Events and Planning</option>
+          <option>Home Services</option>
+          <option>Tech and Creative</option>
+          <option>Fitness and Wellness</option>
+          <option>Photography and Video</option>
+          <option>Tutoring and Coaching</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <button class="form-submit" onclick="handleWaitlist()">Reserve My Spot</button>
+      <div class="success-msg" id="wl-ok">You are on the list! We will be in touch at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="066f68606946726e6368637e60696a6f692865696b">[email&#160;protected]</a></div>
+      <p class="form-note">No spam, ever. Questions? <a href="/cdn-cgi/l/email-protection#6b02050d042b1f030e050e130d0407020445080406" style="color:var(--purple)"><span class="__cf_email__" data-cfemail="6d04030b022d1905080308150b02010402430e0200">[email&#160;protected]</span></a></p>
+    </div>
+    <div>
+      <div class="section-tag">What People Are Saying</div>
+      <div class="t-card"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="t-quote">I have been doing makeup for two years but could not get clients without reviews. This is exactly what I needed.</div><div class="t-author"><div class="t-avatar" style="background:var(--grad)">J</div><div><div class="t-name">Jasmine T.</div><div class="t-role">Makeup Artist, Atlanta GA</div></div></div></div>
+      <div class="t-card"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="t-quote">I hired a photographer through a trial and she was incredible. Found a gem I never would have found elsewhere.</div><div class="t-author"><div class="t-avatar" style="background:linear-gradient(135deg,#4a5c4e,#7B2FBE)">M</div><div><div class="t-name">Marcus R.</div><div class="t-role">Small Business Owner, Atlanta GA</div></div></div></div>
+      <div class="t-card"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="t-quote">Fresh out of cosmetology school, having a platform that gives me a shot without needing 200 reviews first is a game changer.</div><div class="t-author"><div class="t-avatar" style="background:linear-gradient(135deg,#C44FD0,#F72585)">P</div><div><div class="t-name">Priya K.</div><div class="t-role">Hair Stylist, Decatur GA</div></div></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <button class="footer-logo" onclick="showPage('home')"><img src="data:image/png;base64,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" alt="NF"/><span class="footer-logo-text">Nexfolio</span></button>
+        <p class="footer-desc">A platform where emerging talent meets real opportunity through trial-based services that build trust before commitment.</p>
+        <div class="footer-contact">Atlanta, GA &middot; <a href="/cdn-cgi/l/email-protection#8de4e3ebe2cdf9e5e8e3e8f5ebe2e1e4e2a3eee2e0"><span class="__cf_email__" data-cfemail="cea7a0a8a18ebaa6aba0abb6a8a1a2a7a1e0ada1a3">[email&#160;protected]</span></a></div>
+      </div>
+      <div><div class="fc-title">For Clients</div><ul class="fc-links"><li><button onclick="showPage('browse')">Browse Providers</button></li><li><button onclick="showPage('home')">Join Waitlist</button></li></ul></div>
+      <div><div class="fc-title">For Providers</div><ul class="fc-links"><li><button onclick="showPage('signup')">Join as Provider</button></li><li><button onclick="showPage('pricing')">View Pricing</button></li></ul></div>
+      <div><div class="fc-title">Company</div><ul class="fc-links"><li><button onclick="showPage('home')">Our Story</button></li><li><a href="/cdn-cgi/l/email-protection#fb92959d94bb8f939e959e839d94979294d5989496" style="font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;">Contact Us</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><div>2025 Nexfolio. All rights reserved.</div></div>
+  </footer>
+</div>
+
+<!-- BROWSE -->
+
+<div id="page-browse" class="page">
+  <div class="browse-hero">
+    <h1>Find Your Next Provider</h1>
+    <p>Browse emerging talent ready to prove their skills through trial-based work</p>
+    <div class="search-wrap">
+      <input type="text" id="search-q" placeholder="Search by service, name, or location..."/>
+      <button onclick="doSearch()">Search</button>
+    </div>
+  </div>
+  <div class="filter-row">
+    <span class="filter-chip active" onclick="setFilter(this,'all')">All</span>
+    <span class="filter-chip" onclick="setFilter(this,'beauty')">Beauty</span>
+    <span class="filter-chip" onclick="setFilter(this,'events')">Events</span>
+    <span class="filter-chip" onclick="setFilter(this,'home')">Home</span>
+    <span class="filter-chip" onclick="setFilter(this,'tech')">Tech</span>
+    <span class="filter-chip" onclick="setFilter(this,'fitness')">Fitness</span>
+    <span class="filter-chip" onclick="setFilter(this,'photo')">Photography</span>
+  </div>
+  <div class="providers-grid" id="prov-grid"></div>
+</div>
+
+<!-- SIGNUP -->
+
+<div id="page-signup" class="page">
+  <div class="signup-hero">
+    <h1>Join as a Provider</h1>
+    <p>Create your profile, choose your plan, and start getting clients</p>
+  </div>
+  <div class="signup-wrap">
+    <div class="signup-card">
+      <div class="fs-title" style="margin-top:0">Personal Information</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" id="sp-fname" placeholder="First name"/></div>
+        <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" id="sp-lname" placeholder="Last name"/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="sp-email" placeholder="you@email.com"/></div>
+      <div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel" id="sp-phone" placeholder="+1 555 000 0000"/></div>
+      <div class="form-group"><label class="form-label">Location</label><input class="form-input" type="text" id="sp-loc" placeholder="City, State"/></div>
+      <div class="fs-title">Service Details</div>
+      <div class="form-group"><label class="form-label">Service Category</label>
+        <select class="form-select" id="sp-cat">
+          <option value="">Select your category</option>
+          <option>Beauty and Personal Care</option>
+          <option>Events and Planning</option>
+          <option>Home Services</option>
+          <option>Tech and Creative</option>
+          <option>Fitness and Wellness</option>
+          <option>Photography and Video</option>
+          <option>Tutoring and Coaching</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Your Title</label><input class="form-input" type="text" id="sp-title" placeholder="e.g. Makeup Artist, Wedding Coordinator"/></div>
+      <div class="form-group"><label class="form-label">Bio</label><textarea class="form-textarea" id="sp-bio" placeholder="Tell clients about yourself and your experience..."></textarea></div>
+      <div class="form-group"><label class="form-label">Your Trial Offer</label><textarea class="form-textarea" id="sp-trial" placeholder="What will you offer as a trial? e.g. Free 1-hour makeup consultation..."></textarea></div>
+      <div class="fs-title">Choose Your Plan</div>
+      <div class="billing-row">
+        <span>Monthly</span>
+        <div class="tog" id="sp-tog" onclick="toggleBilling()"></div>
+        <span>Annual</span>
+        <span class="save-pill">Save 30%</span>
+      </div>
+      <div class="plan-grid">
+        <div class="plan-opt sel pop" onclick="selPlan(this,'basic')">
+          <div class="plan-name">Basic</div>
+          <div class="plan-price" id="sp-basic-p">$15<span>/mo</span></div>
+          <div class="plan-feat">3 listings, Featured profile, 5 trials/month, Priority support</div>
+        </div>
+        <div class="plan-opt" onclick="selPlan(this,'pro')">
+          <div class="plan-name">Pro</div>
+          <div class="plan-price" id="sp-pro-p">$35<span>/mo</span></div>
+          <div class="plan-feat">Unlimited listings, Top placement, Unlimited trials, Analytics, Badge</div>
+        </div>
+      </div>
+      <button class="form-submit" id="sp-btn" onclick="handleSignup()">Continue with Basic ($15/mo)</button>
+      <div class="success-msg" id="sp-ok">Profile created! We will be in touch at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3b52555d547b4f535e555e435d5457525415585456">[email&#160;protected]</a> to complete your setup.</div>
+      <p class="form-note">Questions? <a href="/cdn-cgi/l/email-protection#553c3b333a15213d303b302d333a393c3a7b363a38" style="color:var(--purple)"><span class="__cf_email__" data-cfemail="9df4f3fbf2dde9f5f8f3f8e5fbf2f1f4f2b3fef2f0">[email&#160;protected]</span></a></p>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+
+<div id="page-pricing" class="page">
+  <div class="pricing-hero">
+    <h1>Simple, Transparent Pricing</h1>
+    <p>Start listing today. No hidden fees. Clients always browse free.</p>
+    <div class="bill-switch">
+      <button class="bill-btn on" id="p-mo" onclick="setPricing('mo')">Monthly</button>
+      <button class="bill-btn" id="p-an" onclick="setPricing('an')">Annual (Save 30%)</button>
+    </div>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card" style="background:var(--grad-soft);">
+      <div class="pc-plan">For Clients</div>
+      <div class="pc-amount">$0<span>/always</span></div>
+      <div class="pc-desc">Browse and book trials completely free. No account needed.</div>
+      <ul class="pc-list">
+        <li>Browse all providers</li>
+        <li>Book free trials</li>
+        <li>Leave honest reviews</li>
+        <li>No credit card required</li>
+        <li class="no">Provider listing</li>
+        <li class="no">Provider profile</li>
+      </ul>
+      <button class="pc-btn s" onclick="showPage('browse')">Browse Providers</button>
+    </div>
+    <div class="price-card feat">
+      <div class="feat-pill">Most Popular</div>
+      <div class="pc-plan">Basic</div>
+      <div class="pc-amount" id="p-basic-amt">$15<span>/mo</span></div>
+      <div class="pc-desc">For providers ready to start getting clients and building their reputation.</div>
+      <ul class="pc-list">
+        <li>3 active listings</li>
+        <li>Featured profile page</li>
+        <li>5 trial bookings per month</li>
+        <li>Priority support</li>
+        <li>Basic analytics</li>
+        <li class="no">Top search placement</li>
+        <li class="no">Verified badge</li>
+      </ul>
+      <button class="pc-btn p" onclick="showPage('signup')">Get Started</button>
+    </div>
+    <div class="price-card">
+      <div class="pc-plan">Pro</div>
+      <div class="pc-amount" id="p-pro-amt">$35<span>/mo</span></div>
+      <div class="pc-desc">For providers who want maximum visibility and unlimited growth.</div>
+      <ul class="pc-list">
+        <li>Unlimited listings</li>
+        <li>Top search placement</li>
+        <li>Unlimited trial bookings</li>
+        <li>Full analytics dashboard</li>
+        <li>Verified provider badge</li>
+        <li>Dedicated account manager</li>
+        <li>Custom profile URL</li>
+      </ul>
+      <button class="pc-btn p" onclick="showPage('signup')">Get Started</button>
+    </div>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-title">Frequently Asked Questions</div>
+    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Do clients pay anything to use Nexfolio?<span></span></div><div class="faq-a">No. Clients browse and book trials completely free. No account or credit card needed. Only providers pay to list.</div></div>
+    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">What happens after a trial?<span></span></div><div class="faq-a">Trials are offered free or at a discounted rate in exchange for an honest review. After the trial, clients can hire you for paid work at your own rates.</div></div>
+    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Can I upgrade or downgrade my plan?<span></span></div><div class="faq-a">Yes. Upgrades take effect immediately and downgrades take effect at the end of your billing cycle.</div></div>
+    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Is there a contract?<span></span></div><div class="faq-a">No contracts. Monthly plans cancel anytime. Annual plans are billed once per year.</div></div>
+    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Still have questions?<span></span></div><div class="faq-a">Email us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f990979f96b98d919c979c819f96959096d79a9694">[email&#160;protected]</a> and we will get back to you within 24 hours.</div></div>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+
+<div class="overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">x</button>
+    <div id="modal-form">
+      <div class="modal-title" id="m-title">Book a Trial</div>
+      <div class="modal-sub" id="m-sub">Complete your booking request below</div>
+      <div class="trial-info"><strong>What is included in this trial:</strong><span id="m-trial"></span></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" id="b-name" placeholder="Full name"/></div>
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="b-email" placeholder="you@email.com"/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Preferred Date</label><input class="form-input" type="date" id="b-date"/></div>
+      <div class="form-group"><label class="form-label">Tell the provider about your needs</label><textarea class="form-textarea" id="b-msg" placeholder="What are you looking for?" style="min-height:75px;"></textarea></div>
+      <button class="form-submit" onclick="submitBooking()">Request Trial Booking</button>
+      <p class="form-note">Free. No payment required. Cancel anytime.</p>
+    </div>
+    <div class="success-box" id="modal-ok">
+      <div style="font-size:2.5rem">&#127881;</div>
+      <h3>Trial Requested!</h3>
+      <p>Your request has been sent. The provider will be in touch within 24 hours.<br/>Questions? <a href="/cdn-cgi/l/email-protection#1b72757d745b6f737e757e637d7477727435787476" style="color:var(--purple)"><span class="__cf_email__" data-cfemail="452c2b232a05312d202b203d232a292c2a6b262a28">[email&#160;protected]</span></a></p>
+    </div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+var providers = [
+{name:‘Jasmine T.’,role:‘Makeup Artist’,cat:‘beauty’,loc:‘Atlanta, GA’,bio:‘Certified makeup artist specializing in bridal and editorial looks. 2 years experience, ready to impress.’,trial:‘Free 45-min glam session or makeup consultation’,stars:5,reviews:0,color:‘linear-gradient(135deg,#7B2FBE,#F72585)’,init:‘J’},
+{name:‘Aisha M.’,role:‘Wedding Day Coordinator’,cat:‘events’,loc:‘Atlanta, GA’,bio:‘Passionate day-of coordinator with 3 years of hands-on event experience. Detail-obsessed and client-focused.’,trial:‘Free 1-hour wedding planning consultation’,stars:5,reviews:1,color:‘linear-gradient(135deg,#F72585,#C44FD0)’,init:‘A’},
+{name:‘Priya K.’,role:‘Hair Stylist’,cat:‘beauty’,loc:‘Decatur, GA’,bio:‘Fresh out of cosmetology school with a passion for natural hair care and protective styling.’,trial:‘Free hair consultation and style assessment’,stars:5,reviews:0,color:‘linear-gradient(135deg,#C44FD0,#7B2FBE)’,init:‘P’},
+{name:‘Marcus R.’,role:‘Event Photographer’,cat:‘photo’,loc:‘Atlanta, GA’,bio:‘Up-and-coming photographer with a sharp eye for candid moments. Portfolio available on request.’,trial:‘Free 30-min mini shoot with 10 edited photos’,stars:5,reviews:2,color:‘linear-gradient(135deg,#4a5c4e,#7B2FBE)’,init:‘M’},
+{name:‘Dana L.’,role:‘Personal Trainer’,cat:‘fitness’,loc:‘Buckhead, GA’,bio:‘NASM certified trainer focused on strength and body composition. First session free.’,trial:‘Free 60-min fitness assessment and workout’,stars:5,reviews:0,color:‘linear-gradient(135deg,#F72585,#7B2FBE)’,init:‘D’},
+{name:‘Chris B.’,role:‘Web Designer’,cat:‘tech’,loc:‘Atlanta, GA’,bio:‘Self-taught designer specializing in landing pages and brand identity. Fast turnaround, clean results.’,trial:‘Free website audit and 1-page redesign mockup’,stars:4,reviews:1,color:‘linear-gradient(135deg,#7B2FBE,#4a5c4e)’,init:‘C’}
+];
+
+function showPage(id) {
+var pages = document.querySelectorAll(’.page’);
+for (var i = 0; i < pages.length; i++) {
+pages[i].classList.remove(‘active’);
+}
+document.getElementById(‘page-’ + id).classList.add(‘active’);
+window.scrollTo(0, 0);
+}
+
+function stars(n) {
+var s = ‘’;
+for (var i = 0; i < n; i++) s += ‘★’;
+for (var i = n; i < 5; i++) s += ‘☆’;
+return s;
+}
+
+function renderProvs(data) {
+var grid = document.getElementById(‘prov-grid’);
+var html = ‘’;
+for (var i = 0; i < data.length; i++) {
+var p = data[i];
+var idx = providers.indexOf(p);
+html += ‘<div class="prov-card" onclick="openModal(' + idx + ')">’;
+html += ‘<div class="prov-header" style="background:' + p.color + '">’;
+html += ‘<div class="prov-avatar">’ + p.init + ‘</div>’;
+html += ‘<div class="trial-pill">Trial Available</div></div>’;
+html += ‘<div class="prov-body">’;
+html += ‘<div class="prov-name">’ + p.name + ‘</div>’;
+html += ‘<div class="prov-role">’ + p.role + ‘</div>’;
+html += ‘<div class="prov-loc">’ + p.loc + ‘</div>’;
+html += ‘<div class="prov-bio">’ + p.bio + ‘</div>’;
+html += ‘<div class="prov-stars">’ + stars(p.stars) + ’ (’ + p.reviews + ’ review’ + (p.reviews !== 1 ? ‘s’ : ‘’) + ‘)</div>’;
+html += ‘<div class="prov-footer"><div class="prov-price">Trial: <strong>Free</strong></div>’;
+html += ‘<button class="btn-book">Book Trial</button></div></div></div>’;
+}
+grid.innerHTML = html;
+}
+
+function setFilter(el, cat) {
+var chips = document.querySelectorAll(’.filter-chip’);
+for (var i = 0; i < chips.length; i++) chips[i].classList.remove(‘active’);
+el.classList.add(‘active’);
+if (cat === ‘all’) {
+renderProvs(providers);
+} else {
+var filtered = [];
+for (var i = 0; i < providers.length; i++) {
+if (providers[i].cat === cat) filtered.push(providers[i]);
+}
+renderProvs(filtered);
+}
+}
+
+function doSearch() {
+var q = document.getElementById(‘search-q’).value.toLowerCase();
+var filtered = [];
+for (var i = 0; i < providers.length; i++) {
+var p = providers[i];
+if (p.name.toLowerCase().indexOf(q) > -1 || p.role.toLowerCase().indexOf(q) > -1 || p.loc.toLowerCase().indexOf(q) > -1) {
+filtered.push(p);
+}
+}
+renderProvs(filtered);
+}
+
+function openModal(i) {
+var p = providers[i];
+document.getElementById(‘m-title’).textContent = ’Book Trial with ’ + p.name;
+document.getElementById(‘m-sub’).textContent = p.role + ’ · ’ + p.loc;
+document.getElementById(‘m-trial’).textContent = p.trial;
+document.getElementById(‘modal-form’).style.display = ‘block’;
+document.getElementById(‘modal-ok’).style.display = ‘none’;
+document.getElementById(‘modal’).classList.add(‘open’);
+}
+
+function closeModal() {
+document.getElementById(‘modal’).classList.remove(‘open’);
+}
+
+function closeModalOutside(e) {
+if (e.target === document.getElementById(‘modal’)) closeModal();
+}
+
+function submitBooking() {
+var name = document.getElementById(‘b-name’).value.trim();
+var email = document.getElementById(‘b-email’).value.trim();
+if (!name || !email) { alert(‘Please enter your name and email.’); return; }
+document.getElementById(‘modal-form’).style.display = ‘none’;
+document.getElementById(‘modal-ok’).style.display = ‘block’;
+}
+
+var annual = false;
+var selPlanName = ‘basic’;
+
+function toggleBilling() {
+annual = !annual;
+var tog = document.getElementById(‘sp-tog’);
+if (annual) tog.classList.add(‘on’); else tog.classList.remove(‘on’);
+document.getElementById(‘sp-basic-p’).innerHTML = annual ? ‘$10<span>/mo</span>’ : ‘$15<span>/mo</span>’;
+document.getElementById(‘sp-pro-p’).innerHTML = annual ? ‘$25<span>/mo</span>’ : ‘$35<span>/mo</span>’;
+updateSpBtn();
+}
+
+function selPlan(el, plan) {
+var opts = document.querySelectorAll(’.plan-opt’);
+for (var i = 0; i < opts.length; i++) opts[i].classList.remove(‘sel’);
+el.classList.add(‘sel’);
+selPlanName = plan;
+updateSpBtn();
+}
+
+function updateSpBtn() {
+var price = selPlanName === ‘basic’ ? (annual ? ‘$10’ : ‘$15’) : (annual ? ‘$25’ : ‘$35’);
+var name = selPlanName === ‘basic’ ? ‘Basic’ : ‘Pro’;
+document.getElementById(‘sp-btn’).textContent = ‘Continue with ’ + name + ’ (’ + price + ‘/mo)’;
+}
+
+function handleSignup() {
+var fname = document.getElementById(‘sp-fname’).value.trim();
+var email = document.getElementById(‘sp-email’).value.trim();
+var cat = document.getElementById(‘sp-cat’).value;
+if (!fname || !email || !cat) { alert(‘Please fill in your name, email, and service category.’); return; }
+var ok = document.getElementById(‘sp-ok’);
+ok.style.display = ‘block’;
+ok.scrollIntoView({behavior:‘smooth’});
+}
+
+function handleWaitlist() {
+var fname = document.getElementById(‘wl-fname’).value.trim();
+var email = document.getElementById(‘wl-email’).value.trim();
+var role = document.getElementById(‘wl-role’).value;
+if (!fname || !email || !role) { alert(‘Please fill in your name, email, and role.’); return; }
+document.getElementById(‘wl-ok’).style.display = ‘block’;
+document.getElementById(‘wl-fname’).value = ‘’;
+document.getElementById(‘wl-lname’).value = ‘’;
+document.getElementById(‘wl-email’).value = ‘’;
+document.getElementById(‘wl-role’).value = ‘’;
+document.getElementById(‘wl-cat’).value = ‘’;
+}
+
+var pricingMode = ‘mo’;
+function setPricing(m) {
+pricingMode = m;
+document.getElementById(‘p-mo’).className = m === ‘mo’ ? ‘bill-btn on’ : ‘bill-btn’;
+document.getElementById(‘p-an’).className = m === ‘an’ ? ‘bill-btn on’ : ‘bill-btn’;
+document.getElementById(‘p-basic-amt’).innerHTML = m === ‘an’ ? ‘$10<span>/mo</span>’ : ‘$15<span>/mo</span>’;
+document.getElementById(‘p-pro-amt’).innerHTML = m === ‘an’ ? ‘$25<span>/mo</span>’ : ‘$35<span>/mo</span>’;
+}
+
+renderProvs(providers);
+</script>
+
+</body>
+</html>
